@@ -10,6 +10,7 @@ namespace LabBrickAttTest
 {
     class DeviceRun
     {
+        private object obj = new object();
         long startdb;
         long stopdb;
         float stepdb;
@@ -30,8 +31,9 @@ namespace LabBrickAttTest
         TextBox txtboxtimeinterval;
         Button btnstart;
         Button btnstop;
+        Label lblatten;
 
-        public DeviceRun(Form1 form, NumericUpDown numericupdown,  TextBox txtboxstartdb, TextBox txtboxstopdb,TextBox channelnumber,TextBox txtboxtimeinterval,Button btnstart, Button btnstop)
+        public DeviceRun(Form1 form, NumericUpDown numericupdown,  TextBox txtboxstartdb, TextBox txtboxstopdb,TextBox channelnumber,TextBox txtboxtimeinterval,Button btnstart, Button btnstop, Label lblatten)
         {
             this.form = form;
             this.numericupdown = numericupdown;
@@ -41,6 +43,7 @@ namespace LabBrickAttTest
             this.txtboxtimeinterval = txtboxtimeinterval;
             this.btnstart = btnstart;
             this.btnstop = btnstop;
+            this.lblatten = lblatten;
         }
 
         public void setParam(string mstartdb, string mstopdb, string mstepdb, string mtimeinterval)
@@ -122,6 +125,8 @@ namespace LabBrickAttTest
                 if (gorun)
                 {
                     bool isReverse = false;
+                    
+
                     while (gorun)
                     {
                         try
@@ -143,17 +148,27 @@ namespace LabBrickAttTest
                                             g_atten = (float)startdb;
                                         }
                                     });
-                                    form.m_LabBrick.SetChannelNumber(form.m_LabBrick.MyDevices[0], Convert.ToInt32(channelnumber.Text));
-                                    form.m_LabBrick.SetAttenuationInDb(form.m_LabBrick.MyDevices[0], (float)g_atten);
-                                    //m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
 
-                                    numericupdown.Invoke((MethodInvoker)delegate ()
+                                    //lock (obj)
                                     {
+                                        form.m_LabBrick.SetChannelNumber(form.m_LabBrick.MyDevices[0], Convert.ToInt32(channelnumber.Text));
+                                        form.m_LabBrick.SetAttenuationInDb(form.m_LabBrick.MyDevices[0], (float)g_atten);
+                                        //m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+
+                                        /****************************************
+                                        numericupdown.Invoke((MethodInvoker)delegate ()
+                                        {
                                         // initialize our attenuation control with the existing device setting
-                                        //numericupdown.Value = (decimal)form.m_LabBrick.GetAttenuationHR(form.m_LabBrick.MyDevices[0]) / 20M;
-                                        //numericupdown.Value = (decimal)form.m_LabBrick.GetAttenuationHR(form.m_LabBrick.MyDevices[0]) / 20M;
                                         numericupdown.Value = (decimal)form.m_LabBrick.GetAttenuationHR(form.m_LabBrick.MyDevices[0]) / 20M;
-                                    });
+                                        });
+                                        *****************************************/
+                                        lblatten.Invoke((MethodInvoker)delegate()
+                                        {
+                                            lblatten.Text = ( (decimal)form.m_LabBrick.GetAttenuationHR(form.m_LabBrick.MyDevices[0]) / 20M).ToString();
+                                        });
+                                        
+
+                                    }
 
                                     //Console.WriteLine(g_atten + " :: " + (decimal)form.m_LabBrick.GetAttenuationHR(form.m_LabBrick.MyDevices[0]) / 20M);
 
@@ -204,16 +219,25 @@ namespace LabBrickAttTest
                                         }
 
                                     });
-                                    form.m_LabBrick.SetChannelNumber(form.m_LabBrick.MyDevices[0], Convert.ToInt32(channelnumber.Text));
-                                    form.m_LabBrick.SetAttenuationInDb(form.m_LabBrick.MyDevices[0], g_atten);
 
-                                    numericupdown.Invoke((MethodInvoker)delegate ()
+                                    //lock (obj)
                                     {
+                                        form.m_LabBrick.SetChannelNumber(form.m_LabBrick.MyDevices[0], Convert.ToInt32(channelnumber.Text));
+                                        form.m_LabBrick.SetAttenuationInDb(form.m_LabBrick.MyDevices[0], g_atten);
+
+                                        /***************************************
+                                        numericupdown.Invoke((MethodInvoker)delegate ()
+                                        {
                                         // initialize our attenuation control with the existing device setting
                                         numericupdown.Value = (decimal)form.m_LabBrick.GetAttenuationHR(form.m_LabBrick.MyDevices[0]) / 20M;
 
-                                    });
-
+                                        });
+                                        *****************************************/
+                                       lblatten.Invoke((MethodInvoker)delegate ()
+                                       {
+                                           lblatten.Text = ((decimal)form.m_LabBrick.GetAttenuationHR(form.m_LabBrick.MyDevices[0]) / 20M).ToString();
+                                       });
+                                    }
                                     int interVal = 0;
                                     txtboxtimeinterval.Invoke((MethodInvoker)delegate ()
                                     {

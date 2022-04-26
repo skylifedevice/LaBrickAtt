@@ -113,11 +113,15 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtboxmessage = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnreset = new System.Windows.Forms.Button();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
             this.btnDeviceDisConnect = new System.Windows.Forms.Button();
             this.btnDeviceConnect = new System.Windows.Forms.Button();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.btnreset = new System.Windows.Forms.Button();
+            this.lblatten01 = new System.Windows.Forms.Label();
+            this.lblatten02 = new System.Windows.Forms.Label();
+            this.lblatten03 = new System.Windows.Forms.Label();
+            this.lblatten04 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown01)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -151,7 +155,7 @@
             0,
             0});
             this.numericUpDown01.Name = "numericUpDown01";
-            this.numericUpDown01.Size = new System.Drawing.Size(484, 63);
+            this.numericUpDown01.Size = new System.Drawing.Size(299, 63);
             this.numericUpDown01.TabIndex = 0;
             this.numericUpDown01.ValueChanged += new System.EventHandler(this.numericUpDown01_ValueChanged);
             // 
@@ -251,6 +255,7 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.lblatten04);
             this.groupBox9.Controls.Add(this.label19);
             this.groupBox9.Controls.Add(this.numericUpDown04);
             this.groupBox9.Controls.Add(this.btnstop04);
@@ -305,7 +310,7 @@
             0,
             0});
             this.numericUpDown04.Name = "numericUpDown04";
-            this.numericUpDown04.Size = new System.Drawing.Size(484, 63);
+            this.numericUpDown04.Size = new System.Drawing.Size(299, 63);
             this.numericUpDown04.TabIndex = 19;
             this.numericUpDown04.ValueChanged += new System.EventHandler(this.numericUpDown04_ValueChanged);
             // 
@@ -461,6 +466,7 @@
             // 
             // groupBox10
             // 
+            this.groupBox10.Controls.Add(this.lblatten02);
             this.groupBox10.Controls.Add(this.label27);
             this.groupBox10.Controls.Add(this.numericUpDown02);
             this.groupBox10.Controls.Add(this.btnstop02);
@@ -515,7 +521,7 @@
             0,
             0});
             this.numericUpDown02.Name = "numericUpDown02";
-            this.numericUpDown02.Size = new System.Drawing.Size(484, 63);
+            this.numericUpDown02.Size = new System.Drawing.Size(299, 63);
             this.numericUpDown02.TabIndex = 0;
             this.numericUpDown02.ValueChanged += new System.EventHandler(this.numericUpDown02_ValueChanged);
             // 
@@ -681,6 +687,7 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.lblatten03);
             this.groupBox8.Controls.Add(this.label11);
             this.groupBox8.Controls.Add(this.numericUpDown03);
             this.groupBox8.Controls.Add(this.btnstop03);
@@ -735,7 +742,7 @@
             0,
             0});
             this.numericUpDown03.Name = "numericUpDown03";
-            this.numericUpDown03.Size = new System.Drawing.Size(484, 63);
+            this.numericUpDown03.Size = new System.Drawing.Size(299, 63);
             this.numericUpDown03.TabIndex = 19;
             this.numericUpDown03.ValueChanged += new System.EventHandler(this.numericUpDown03_ValueChanged);
             // 
@@ -891,6 +898,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.lblatten01);
             this.groupBox7.Controls.Add(this.label1);
             this.groupBox7.Controls.Add(this.numericUpDown01);
             this.groupBox7.Controls.Add(this.btnstop01);
@@ -1109,6 +1117,38 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             // 
+            // btnreset
+            // 
+            this.btnreset.Location = new System.Drawing.Point(945, 12);
+            this.btnreset.Name = "btnreset";
+            this.btnreset.Size = new System.Drawing.Size(122, 31);
+            this.btnreset.TabIndex = 14;
+            this.btnreset.Text = "RESET";
+            this.btnreset.UseVisualStyleBackColor = true;
+            this.btnreset.Click += new System.EventHandler(this.btnreset_Click);
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("나눔고딕", 8.999999F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label36.ForeColor = System.Drawing.Color.Transparent;
+            this.label36.Location = new System.Drawing.Point(532, 50);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(343, 14);
+            this.label36.TabIndex = 13;
+            this.label36.Text = "Time Interval을 100ms 이하로 하면, 다른 채널이 동작하지 않는다.";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("나눔고딕", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label35.ForeColor = System.Drawing.Color.Transparent;
+            this.label35.Location = new System.Drawing.Point(532, 26);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(281, 17);
+            this.label35.TabIndex = 12;
+            this.label35.Text = "주의 : 이 장비의 Channel은 동시성이 없다.";
+            // 
             // btnDeviceDisConnect
             // 
             this.btnDeviceDisConnect.Location = new System.Drawing.Point(945, 49);
@@ -1130,37 +1170,45 @@
             this.btnDeviceConnect.UseVisualStyleBackColor = true;
             this.btnDeviceConnect.Click += new System.EventHandler(this.btnDeviceConnect_Click);
             // 
-            // label35
+            // lblatten01
             // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("나눔고딕", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label35.ForeColor = System.Drawing.Color.Transparent;
-            this.label35.Location = new System.Drawing.Point(532, 26);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(281, 17);
-            this.label35.TabIndex = 12;
-            this.label35.Text = "주의 : 이 장비의 Channel은 동시성이 없다.";
+            this.lblatten01.AutoSize = true;
+            this.lblatten01.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblatten01.Location = new System.Drawing.Point(347, 32);
+            this.lblatten01.Name = "lblatten01";
+            this.lblatten01.Size = new System.Drawing.Size(110, 59);
+            this.lblatten01.TabIndex = 19;
+            this.lblatten01.Text = "0.0";
             // 
-            // label36
+            // lblatten02
             // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("나눔고딕", 8.999999F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label36.ForeColor = System.Drawing.Color.Transparent;
-            this.label36.Location = new System.Drawing.Point(532, 50);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(343, 14);
-            this.label36.TabIndex = 13;
-            this.label36.Text = "Time Interval을 100ms 이하로 하면, 다른 채널이 동작하지 않는다.";
+            this.lblatten02.AutoSize = true;
+            this.lblatten02.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblatten02.Location = new System.Drawing.Point(347, 32);
+            this.lblatten02.Name = "lblatten02";
+            this.lblatten02.Size = new System.Drawing.Size(110, 59);
+            this.lblatten02.TabIndex = 20;
+            this.lblatten02.Text = "0.0";
             // 
-            // btnreset
+            // lblatten03
             // 
-            this.btnreset.Location = new System.Drawing.Point(945, 12);
-            this.btnreset.Name = "btnreset";
-            this.btnreset.Size = new System.Drawing.Size(122, 31);
-            this.btnreset.TabIndex = 14;
-            this.btnreset.Text = "RESET";
-            this.btnreset.UseVisualStyleBackColor = true;
-            this.btnreset.Click += new System.EventHandler(this.btnreset_Click);
+            this.lblatten03.AutoSize = true;
+            this.lblatten03.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblatten03.Location = new System.Drawing.Point(347, 41);
+            this.lblatten03.Name = "lblatten03";
+            this.lblatten03.Size = new System.Drawing.Size(110, 59);
+            this.lblatten03.TabIndex = 36;
+            this.lblatten03.Text = "0.0";
+            // 
+            // lblatten04
+            // 
+            this.lblatten04.AutoSize = true;
+            this.lblatten04.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblatten04.Location = new System.Drawing.Point(350, 41);
+            this.lblatten04.Name = "lblatten04";
+            this.lblatten04.Size = new System.Drawing.Size(110, 59);
+            this.lblatten04.TabIndex = 37;
+            this.lblatten04.Text = "0.0";
             // 
             // Form1
             // 
@@ -1291,6 +1339,10 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Button btnreset;
+        public System.Windows.Forms.Label lblatten04;
+        public System.Windows.Forms.Label lblatten02;
+        public System.Windows.Forms.Label lblatten03;
+        public System.Windows.Forms.Label lblatten01;
     }
 }
 

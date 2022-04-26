@@ -31,6 +31,7 @@ namespace LabBrickAttTest
     public partial class Form1 : Form
     {
         Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        private object obj = new object();
 
         private int m_NumberOfDevices = 0;
         public LabBrickWrapper m_LabBrick = null;
@@ -58,10 +59,10 @@ namespace LabBrickAttTest
             // Set test mode false to look for actual hardware
             m_LabBrick.SetTestMode(false);
 
-            deviceRun01 = new DeviceRun(this, numericUpDown01,txtboxstartdb01,txtboxstopdb01,txtboxchannelnumber01,txtboxtimeinterval01,btnstart01,btnstop01);
-            deviceRun02 = new DeviceRun(this, numericUpDown02, txtboxstartdb02, txtboxstopdb02, txtboxchannelnumber02, txtboxtimeinterval02, btnstart02, btnstop02);
-            deviceRun03 = new DeviceRun(this, numericUpDown03, txtboxstartdb03, txtboxstopdb03, txtboxchannelnumber03, txtboxtimeinterval03, btnstart03, btnstop03);
-            deviceRun04 = new DeviceRun(this, numericUpDown04, txtboxstartdb04, txtboxstopdb04, txtboxchannelnumber04, txtboxtimeinterval04, btnstart04, btnstop04);
+            deviceRun01 = new DeviceRun(this, numericUpDown01,txtboxstartdb01,txtboxstopdb01,txtboxchannelnumber01,txtboxtimeinterval01,btnstart01,btnstop01,lblatten01);
+            deviceRun02 = new DeviceRun(this, numericUpDown02, txtboxstartdb02, txtboxstopdb02, txtboxchannelnumber02, txtboxtimeinterval02, btnstart02, btnstop02, lblatten02);
+            deviceRun03 = new DeviceRun(this, numericUpDown03, txtboxstartdb03, txtboxstopdb03, txtboxchannelnumber03, txtboxtimeinterval03, btnstart03, btnstop03, lblatten03);
+            deviceRun04 = new DeviceRun(this, numericUpDown04, txtboxstartdb04, txtboxstopdb04, txtboxchannelnumber04, txtboxtimeinterval04, btnstart04, btnstop04, lblatten04);
 
             //Form1 form, NumericUpDown numericupdown,  TextBox txtboxstartdb, TextBox txtboxstopdb,TextBox channelnumber,TextBox txtboxtimeinterval,Button btnstart, Button btnstop
         }
@@ -108,6 +109,20 @@ namespace LabBrickAttTest
                     // Do something about the error.
                     this.groupBox2.BackColor = System.Drawing.SystemColors.ControlDark;
                 }
+                
+                /***************/
+                m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber01.Text));
+                numericUpDown01.Value = (decimal)m_LabBrick.GetAttenuationHR(m_LabBrick.MyDevices[0]) / 20M;
+
+                m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber02.Text));
+                numericUpDown02.Value = (decimal)m_LabBrick.GetAttenuationHR(m_LabBrick.MyDevices[0]) / 20M;
+
+                m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber03.Text));
+                numericUpDown03.Value = (decimal)m_LabBrick.GetAttenuationHR(m_LabBrick.MyDevices[0]) / 20M;
+
+                m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber04.Text));
+                numericUpDown04.Value = (decimal)m_LabBrick.GetAttenuationHR(m_LabBrick.MyDevices[0]) / 20M;
+                /***************/
 
                 //float m_atten = (float)numericUpDown01.Value;
                 //m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], m_atten);
@@ -203,7 +218,9 @@ namespace LabBrickAttTest
                 retstr = ConfigurationManager.AppSettings["Reverse04"];
                 if (!retstr.Equals("") && retstr != null) { this.chkboxReverse04.Checked = bool.Parse(retstr); }
 
-            }catch(Exception ex)
+
+            }
+            catch(Exception ex)
             {
 
             }
@@ -453,9 +470,14 @@ namespace LabBrickAttTest
 
             if (LDA_Open)
             {
-                tmp_attenuation = (float)numericUpDown01.Value;
-                m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber01.Text));
-                m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+                //lock (obj)
+                {
+                    tmp_attenuation = (float)numericUpDown01.Value;
+                    m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber01.Text));
+                    m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+
+                    lblatten01.Text = tmp_attenuation.ToString();
+                }
             }
         }
 
@@ -465,9 +487,14 @@ namespace LabBrickAttTest
 
             if (LDA_Open)
             {
-                tmp_attenuation = (float)numericUpDown02.Value;
-                m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber02.Text));
-                m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+                //lock (obj)
+                {
+                    tmp_attenuation = (float)numericUpDown02.Value;
+                    m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber02.Text));
+                    m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+
+                    lblatten02.Text = tmp_attenuation.ToString();
+                }
             }
         }
 
@@ -477,9 +504,14 @@ namespace LabBrickAttTest
 
             if (LDA_Open)
             {
-                tmp_attenuation = (float)numericUpDown03.Value;
-                m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber03.Text));
-                m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+                //lock (obj)
+                {
+                    tmp_attenuation = (float)numericUpDown03.Value;
+                    m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber03.Text));
+                    m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+
+                    lblatten03.Text = tmp_attenuation.ToString();
+                }
             }
         }
 
@@ -489,9 +521,17 @@ namespace LabBrickAttTest
 
             if (LDA_Open)
             {
-                tmp_attenuation = (float)numericUpDown04.Value;
-                m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber04.Text));
-                m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+                //lock (obj)
+                {
+                    //if (btnstart04.Enabled == true)
+                    {
+                        tmp_attenuation = (float)numericUpDown04.Value;
+                        m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber04.Text));
+                        m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], tmp_attenuation);
+
+                        lblatten04.Text = tmp_attenuation.ToString();
+                    }
+                }
             }
         }
 
@@ -521,6 +561,27 @@ namespace LabBrickAttTest
             this.chkboxReverse02.Checked = false;
             this.chkboxReverse03.Checked = false;
             this.chkboxReverse04.Checked = false;
+
+            this.lblatten01.Text = "0.0";
+            this.lblatten02.Text = "0.0";
+            this.lblatten03.Text = "0.0";
+            this.lblatten04.Text = "0.0";
+
+            numericUpDown01.Value = 0 / 20M;
+            m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber01.Text));
+            m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], (float)numericUpDown01.Value);
+
+            numericUpDown02.Value = 0 / 20M;
+            m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber02.Text));
+            m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], (float)numericUpDown02.Value);
+
+            numericUpDown03.Value = 0 / 20M;
+            m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber03.Text));
+            m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], (float)numericUpDown03.Value);
+
+            numericUpDown04.Value = 0 / 20M;
+            m_LabBrick.SetChannelNumber(m_LabBrick.MyDevices[0], Convert.ToInt32(txtboxchannelnumber04.Text));
+            m_LabBrick.SetAttenuationInDb(m_LabBrick.MyDevices[0], (float)numericUpDown04.Value);
 
         }
     }
